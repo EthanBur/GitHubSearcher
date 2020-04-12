@@ -7,25 +7,43 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		04653A6224424A1D00EF476C /* URLBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04653A6124424A1D00EF476C /* URLBuilder.swift */; };
+		04653A6524424A7900EF476C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04653A6424424A7800EF476C /* Constants.swift */; };
+		04653A6724424C6500EF476C /* GitUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04653A6624424C6500EF476C /* GitUserView.swift */; };
+		04653A6924424CB300EF476C /* GitUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04653A6824424CB300EF476C /* GitUserViewController.swift */; };
+		04653A6B24424D3500EF476C /* GitUserViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04653A6A24424D3500EF476C /* GitUserViewExtensions.swift */; };
+		04653A702443618200EF476C /* Data Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04653A6F2443618200EF476C /* Data Models.swift */; };
+		04653A722443745200EF476C /* UIImageView Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04653A712443745200EF476C /* UIImageView Extensions.swift */; };
 		04FC394224423B5F00C7B30A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FC394124423B5F00C7B30A /* AppDelegate.swift */; };
 		04FC394424423B5F00C7B30A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FC394324423B5F00C7B30A /* SceneDelegate.swift */; };
 		04FC394624423B5F00C7B30A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FC394524423B5F00C7B30A /* ViewController.swift */; };
-		04FC394924423B5F00C7B30A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04FC394724423B5F00C7B30A /* Main.storyboard */; };
 		04FC394C24423B5F00C7B30A /* T_Mobile_Code_Challenge.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 04FC394A24423B5F00C7B30A /* T_Mobile_Code_Challenge.xcdatamodeld */; };
 		04FC394E24423B6200C7B30A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 04FC394D24423B6200C7B30A /* Assets.xcassets */; };
 		04FC395124423B6200C7B30A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 04FC394F24423B6200C7B30A /* LaunchScreen.storyboard */; };
+		04FC395B24423D1E00C7B30A /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FC395A24423D1E00C7B30A /* MainView.swift */; };
+		04FC395E24423E6B00C7B30A /* MainViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FC395D24423E6B00C7B30A /* MainViewExtensions.swift */; };
+		04FC39612442469100C7B30A /* MainViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FC39602442469100C7B30A /* MainViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		04653A6124424A1D00EF476C /* URLBuilder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLBuilder.swift; sourceTree = "<group>"; };
+		04653A6424424A7800EF476C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		04653A6624424C6500EF476C /* GitUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitUserView.swift; sourceTree = "<group>"; };
+		04653A6824424CB300EF476C /* GitUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitUserViewController.swift; sourceTree = "<group>"; };
+		04653A6A24424D3500EF476C /* GitUserViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitUserViewExtensions.swift; sourceTree = "<group>"; };
+		04653A6F2443618200EF476C /* Data Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Data Models.swift"; sourceTree = "<group>"; };
+		04653A712443745200EF476C /* UIImageView Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView Extensions.swift"; sourceTree = "<group>"; };
 		04FC393E24423B5F00C7B30A /* T-Mobile_Code_Challenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "T-Mobile_Code_Challenge.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		04FC394124423B5F00C7B30A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04FC394324423B5F00C7B30A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		04FC394524423B5F00C7B30A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		04FC394824423B5F00C7B30A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		04FC394B24423B5F00C7B30A /* T_Mobile_Code_Challenge.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = T_Mobile_Code_Challenge.xcdatamodel; sourceTree = "<group>"; };
 		04FC394D24423B6200C7B30A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		04FC395024423B6200C7B30A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		04FC395224423B6200C7B30A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		04FC395A24423D1E00C7B30A /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		04FC395D24423E6B00C7B30A /* MainViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewExtensions.swift; sourceTree = "<group>"; };
+		04FC39602442469100C7B30A /* MainViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,6 +57,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		04653A60244249F800EF476C /* URL Builder */ = {
+			isa = PBXGroup;
+			children = (
+				04653A6124424A1D00EF476C /* URLBuilder.swift */,
+			);
+			path = "URL Builder";
+			sourceTree = "<group>";
+		};
+		04653A6324424A6400EF476C /* Constants */ = {
+			isa = PBXGroup;
+			children = (
+				04653A6424424A7800EF476C /* Constants.swift */,
+			);
+			path = Constants;
+			sourceTree = "<group>";
+		};
+		04653A6E2443616E00EF476C /* Data Models */ = {
+			isa = PBXGroup;
+			children = (
+				04653A6F2443618200EF476C /* Data Models.swift */,
+			);
+			path = "Data Models";
+			sourceTree = "<group>";
+		};
 		04FC393524423B5F00C7B30A = {
 			isa = PBXGroup;
 			children = (
@@ -60,14 +102,55 @@
 			children = (
 				04FC394124423B5F00C7B30A /* AppDelegate.swift */,
 				04FC394324423B5F00C7B30A /* SceneDelegate.swift */,
-				04FC394524423B5F00C7B30A /* ViewController.swift */,
-				04FC394724423B5F00C7B30A /* Main.storyboard */,
+				04653A6E2443616E00EF476C /* Data Models */,
+				04653A6324424A6400EF476C /* Constants */,
+				04FC395824423CF500C7B30A /* View Controllers */,
+				04FC395924423D0500C7B30A /* Views */,
+				04FC395C24423E5600C7B30A /* Extensions */,
+				04FC395F2442467700C7B30A /* Custom Cells */,
+				04653A60244249F800EF476C /* URL Builder */,
 				04FC394D24423B6200C7B30A /* Assets.xcassets */,
 				04FC394F24423B6200C7B30A /* LaunchScreen.storyboard */,
 				04FC395224423B6200C7B30A /* Info.plist */,
 				04FC394A24423B5F00C7B30A /* T_Mobile_Code_Challenge.xcdatamodeld */,
 			);
 			path = "T-Mobile_Code_Challenge";
+			sourceTree = "<group>";
+		};
+		04FC395824423CF500C7B30A /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				04FC394524423B5F00C7B30A /* ViewController.swift */,
+				04653A6824424CB300EF476C /* GitUserViewController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		04FC395924423D0500C7B30A /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				04FC395A24423D1E00C7B30A /* MainView.swift */,
+				04653A6624424C6500EF476C /* GitUserView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		04FC395C24423E5600C7B30A /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				04653A712443745200EF476C /* UIImageView Extensions.swift */,
+				04FC395D24423E6B00C7B30A /* MainViewExtensions.swift */,
+				04653A6A24424D3500EF476C /* GitUserViewExtensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		04FC395F2442467700C7B30A /* Custom Cells */ = {
+			isa = PBXGroup;
+			children = (
+				04FC39602442469100C7B30A /* MainViewCell.swift */,
+			);
+			path = "Custom Cells";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -130,7 +213,6 @@
 			files = (
 				04FC395124423B6200C7B30A /* LaunchScreen.storyboard in Resources */,
 				04FC394E24423B6200C7B30A /* Assets.xcassets in Resources */,
-				04FC394924423B5F00C7B30A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -141,24 +223,26 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04653A6924424CB300EF476C /* GitUserViewController.swift in Sources */,
 				04FC394624423B5F00C7B30A /* ViewController.swift in Sources */,
+				04653A702443618200EF476C /* Data Models.swift in Sources */,
+				04653A722443745200EF476C /* UIImageView Extensions.swift in Sources */,
 				04FC394224423B5F00C7B30A /* AppDelegate.swift in Sources */,
 				04FC394424423B5F00C7B30A /* SceneDelegate.swift in Sources */,
+				04653A6B24424D3500EF476C /* GitUserViewExtensions.swift in Sources */,
+				04FC395E24423E6B00C7B30A /* MainViewExtensions.swift in Sources */,
+				04FC395B24423D1E00C7B30A /* MainView.swift in Sources */,
+				04653A6224424A1D00EF476C /* URLBuilder.swift in Sources */,
+				04653A6724424C6500EF476C /* GitUserView.swift in Sources */,
+				04FC39612442469100C7B30A /* MainViewCell.swift in Sources */,
 				04FC394C24423B5F00C7B30A /* T_Mobile_Code_Challenge.xcdatamodeld in Sources */,
+				04653A6524424A7900EF476C /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		04FC394724423B5F00C7B30A /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				04FC394824423B5F00C7B30A /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		04FC394F24423B6200C7B30A /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
