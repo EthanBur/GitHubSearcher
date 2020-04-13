@@ -6,4 +6,4 @@
 //  Copyright © 2020 MCS. All rights reserved.
 //
 
-import Foundation
+let apiKey = "970cfb23110f001b9a23e0ca6e649f918f508ef9"

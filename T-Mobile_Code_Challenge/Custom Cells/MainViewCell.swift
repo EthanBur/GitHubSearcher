@@ -40,8 +40,9 @@ class MainViewCell: UITableViewCell {
         self.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
         
         userImage.topAnchor.constraint(equalTo: self.topAnchor, constant: 5).isActive = true
-        userImage.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: 5).isActive = true
+        userImage.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -5).isActive = true
         userImage.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 5).isActive = true
+        userImage.widthAnchor.constraint(equalToConstant: 70).isActive = true
         
         userLabel.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         userLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true

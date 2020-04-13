@@ -11,14 +11,19 @@ import UIKit
 class GitUserViewController: UIViewController {
     
     let gitView = GitUserView()
+    var userName: String = ""
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func loadView() {
         self.navigationItem.title = "GitHub Searcher"
         self.navigationController?.navigationBar.barTintColor = .gray
         let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white, NSAttributedString.Key.font: UIFont(name: "Trebuchet MS", size: 35.0)]
         navigationController?.navigationBar.titleTextAttributes = textAttributes as [NSAttributedString.Key : Any]
         gitView.controller = self
+        gitView.userName = userName
         view = gitView
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
     }
 }

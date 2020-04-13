@@ -6,4 +6,8 @@
 //  Copyright © 2020 MCS. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+struct GitUser: Decodable {
+    var items: [User]?
+}

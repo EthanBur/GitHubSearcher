@@ -20,7 +20,7 @@ class MainView: UIView {
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search For Users"
         searchController.hidesNavigationBarDuringPresentation = false
-        let textFieldInsideSearchBar = searchController.searchBar.value(forKey: "searchField") as? UITextField
+        
         return searchController
     }()
     

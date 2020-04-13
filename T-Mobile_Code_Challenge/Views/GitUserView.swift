@@ -16,11 +16,16 @@ class GitUserView: UIView {
     }()
     
     weak var controller: UIViewController?
+    var gitUserRepos: [UserRepo] = []
+    var filteredRepos: [String] = []
+    var userName = ""
+//    var filteredUserImageUrl: [String] = []
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = .white
         
+        getRepoInfo(searchText: userName)
         tableview.delegate = self
         tableview.dataSource = self
         tableview.register(UITableViewCell.self, forCellReuseIdentifier: "Cell")

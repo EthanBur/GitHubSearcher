@@ -11,11 +11,13 @@ import UIKit
 extension MainView: UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         let searchBar = searchController.searchBar
-        if isFiltering{
-            getInfo(searchText: searchBar.text!)
-        }
-        if gitUsers.count != 0 {
-            self.filterContentForSearchText(searchText: searchBar.text!)
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+            if self.isFiltering{
+                self.getInfo(searchText: searchBar.text!)
+            }
+            if self.gitUsers.count != 0 {
+                self.filterContentForSearchText(searchText: searchBar.text!)
+            }
         }
     }
     
@@ -25,16 +27,18 @@ extension MainView: UITableViewDataSource, UITableViewDelegate, UISearchBarDeleg
     
     func filterContentForSearchText(searchText: String) {
         var temp: [String] = []
+        filteredUserImageUrl = []
         if gitUsers.count != 0 {
             for i in 0...gitUsers.count-1 {
-                temp.append(gitUsers[i].login ?? "No bug found!")
+                temp.append(gitUsers[i].login ?? "No name found!")
             }
         }
         filteredUsers = temp.filter { (result: String) -> Bool in
             return result.lowercased().contains(searchText.lowercased())
         }
-        for i in 0..<filteredUsers.count-1 {
-            for j in 0..<gitUsers.count-1 {
+        filteredUserImageUrl = []
+        for i in 0..<filteredUsers.count {
+            for j in 0..<gitUsers.count {
                 if gitUsers[j].login == filteredUsers[i] {
                     filteredUserImageUrl.append(gitUsers[i].avatar_url ?? "https://avatars0.githubusercontent.com/u/9795?v=4")
                 }
@@ -81,8 +85,7 @@ extension MainView: UITableViewDataSource, UITableViewDelegate, UISearchBarDeleg
         var user: String
         if isFiltering {
             user = filteredUsers[indexPath.row]
-            cell.userImage.downloadImageFrom(link: "\(String(describing: filteredUserImageUrl[0]))", contentMode: UIView.ContentMode.left)
-            cell.userImage.frame = CGRect(x: 0, y: 0, width: 70, height: 70)
+            cell.userImage.downloadImageFrom(link: "\(String(describing: filteredUserImageUrl[indexPath.row]))", contentMode: .scaleAspectFit)
         } else {
             user = ""
         }
@@ -92,6 +95,8 @@ extension MainView: UITableViewDataSource, UITableViewDelegate, UISearchBarDeleg
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let gitVC = GitUserViewController()
+        gitVC.userName = filteredUsers[indexPath.row]
+        self.searchController.isActive = false
         self.controller?.navigationController?.pushViewController(gitVC, animated: true)
     }
     

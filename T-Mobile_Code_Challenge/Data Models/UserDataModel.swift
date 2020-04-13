@@ -6,4 +6,10 @@
 //  Copyright © 2020 MCS. All rights reserved.
 //
 
-import Foundation
+import UIKit
+
+struct User: Decodable {
+    var login: String?
+    var avatar_url: String?
+}
+
