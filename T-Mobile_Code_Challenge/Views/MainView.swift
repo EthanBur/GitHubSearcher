@@ -26,6 +26,7 @@ class MainView: UIView {
     
     weak var controller: UIViewController?
     var gitUsers: [User] = []
+    var gitUserAdditional: [additionalUser] = []
     var filteredUsers: [String] = []
     var filteredUserImageUrl: [String] = []
     
