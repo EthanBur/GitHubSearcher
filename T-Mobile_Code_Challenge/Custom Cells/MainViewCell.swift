@@ -22,6 +22,12 @@ class MainViewCell: UITableViewCell {
         return userImage
     }()
     
+    let repoNumLabel: UILabel = {
+       let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        return label
+    }()
+    
     override init (style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupCellView()
@@ -34,6 +40,7 @@ class MainViewCell: UITableViewCell {
     func setupCellView() {
         addSubview(userLabel)
         addSubview(userImage)
+        addSubview(repoNumLabel)
         self.topAnchor.constraint(equalTo: topAnchor).isActive = true
         self.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
         self.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
@@ -44,9 +51,14 @@ class MainViewCell: UITableViewCell {
         userImage.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 5).isActive = true
         userImage.widthAnchor.constraint(equalToConstant: 70).isActive = true
         
+        repoNumLabel.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
+        repoNumLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
+        repoNumLabel.leadingAnchor.constraint(equalTo: self.trailingAnchor, constant: -100).isActive = true
+        repoNumLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        
         userLabel.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
         userLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
         userLabel.leadingAnchor.constraint(equalTo: userImage.trailingAnchor).isActive = true
-        userLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        userLabel.trailingAnchor.constraint(equalTo: repoNumLabel.leadingAnchor).isActive = true
     }
 }

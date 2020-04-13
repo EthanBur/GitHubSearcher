@@ -12,7 +12,7 @@ extension GitUserView: UITableViewDataSource, UITableViewDelegate {
     func getRepoInfo(searchText: String) {
         let decoder = JSONDecoder()
         //https://api.github.com/users/azat-io/repos
-        let url = URLBuilder.buildURL(scheme: "https", host: "api.github.com", path: "/users/\(userName)/repos",queries: [])!
+        let url = URLBuilder.buildURL(scheme: "https", host: "api.github.com", path: "/users/\(String(describing: user.login))/repos",queries: [])!
         let task = URLSession.shared.dataTask(with: url) {
             data, response, error in
             
@@ -52,5 +52,9 @@ extension GitUserView: UITableViewDataSource, UITableViewDelegate {
 //        }
         cell.repoLabel.text = gitUserRepos[indexPath.row].name ?? "No Repo name found"
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 80
     }
 }

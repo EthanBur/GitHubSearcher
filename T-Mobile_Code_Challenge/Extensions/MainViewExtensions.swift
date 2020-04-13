@@ -86,6 +86,7 @@ extension MainView: UITableViewDataSource, UITableViewDelegate, UISearchBarDeleg
         if isFiltering {
             user = filteredUsers[indexPath.row]
             cell.userImage.downloadImageFrom(link: "\(String(describing: filteredUserImageUrl[indexPath.row]))", contentMode: .scaleAspectFit)
+            cell.repoNumLabel.text = "Repo: "
         } else {
             user = ""
         }
@@ -95,7 +96,7 @@ extension MainView: UITableViewDataSource, UITableViewDelegate, UISearchBarDeleg
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let gitVC = GitUserViewController()
-        gitVC.userName = filteredUsers[indexPath.row]
+        gitVC.user = gitUsers[indexPath.row]
         self.searchController.isActive = false
         self.controller?.navigationController?.pushViewController(gitVC, animated: true)
     }

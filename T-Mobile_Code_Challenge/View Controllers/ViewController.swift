@@ -20,11 +20,5 @@ class ViewController: UIViewController {
         mainView.controller = self
         view = mainView
     }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-
-
 }
 

@@ -11,5 +11,6 @@ import UIKit
 struct User: Decodable {
     var login: String?
     var avatar_url: String?
+    var url: String?
 }
 

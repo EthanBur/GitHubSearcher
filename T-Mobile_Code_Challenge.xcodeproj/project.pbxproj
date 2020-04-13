@@ -17,6 +17,7 @@
 		04653A762443D3A200EF476C /* UserDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04653A752443D3A200EF476C /* UserDataModel.swift */; };
 		04653A782443D3D400EF476C /* UserRepoDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04653A772443D3D400EF476C /* UserRepoDataModel.swift */; };
 		04653A7C2443D5BD00EF476C /* GitUserViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04653A7B2443D5BD00EF476C /* GitUserViewCell.swift */; };
+		04653A7E2444AD1A00EF476C /* GitUserAdditionalDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04653A7D2444AD1A00EF476C /* GitUserAdditionalDataModel.swift */; };
 		04FC394224423B5F00C7B30A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FC394124423B5F00C7B30A /* AppDelegate.swift */; };
 		04FC394424423B5F00C7B30A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FC394324423B5F00C7B30A /* SceneDelegate.swift */; };
 		04FC394624423B5F00C7B30A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 04FC394524423B5F00C7B30A /* ViewController.swift */; };
@@ -39,6 +40,7 @@
 		04653A752443D3A200EF476C /* UserDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDataModel.swift; sourceTree = "<group>"; };
 		04653A772443D3D400EF476C /* UserRepoDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepoDataModel.swift; sourceTree = "<group>"; };
 		04653A7B2443D5BD00EF476C /* GitUserViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitUserViewCell.swift; sourceTree = "<group>"; };
+		04653A7D2444AD1A00EF476C /* GitUserAdditionalDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GitUserAdditionalDataModel.swift; sourceTree = "<group>"; };
 		04FC393E24423B5F00C7B30A /* T-Mobile_Code_Challenge.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "T-Mobile_Code_Challenge.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		04FC394124423B5F00C7B30A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		04FC394324423B5F00C7B30A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -83,6 +85,7 @@
 			isa = PBXGroup;
 			children = (
 				04653A732443D37A00EF476C /* GitUserDataModel.swift */,
+				04653A7D2444AD1A00EF476C /* GitUserAdditionalDataModel.swift */,
 				04653A752443D3A200EF476C /* UserDataModel.swift */,
 				04653A772443D3D400EF476C /* UserRepoDataModel.swift */,
 			);
@@ -248,6 +251,7 @@
 				04FC39612442469100C7B30A /* MainViewCell.swift in Sources */,
 				04FC394C24423B5F00C7B30A /* T_Mobile_Code_Challenge.xcdatamodeld in Sources */,
 				04653A6524424A7900EF476C /* Constants.swift in Sources */,
+				04653A7E2444AD1A00EF476C /* GitUserAdditionalDataModel.swift in Sources */,
 				04653A742443D37A00EF476C /* GitUserDataModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
