@@ -42,25 +42,15 @@ class GitUserViewCell: UITableViewCell {
         addSubview(forksLabel)
         addSubview(starsLabel)
         
-        self.topAnchor.constraint(equalTo: topAnchor).isActive = true
-        self.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
-        self.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
-        self.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
+        repoLabel.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        repoLabel.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
+        repoLabel.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
+        repoLabel.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
         
-        repoLabel.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        repoLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-        repoLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
-        repoLabel.trailingAnchor.constraint(equalTo: self.leadingAnchor, constant: 250).isActive = true
-        repoLabel.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        
-        forksLabel.topAnchor.constraint(equalTo: self.topAnchor).isActive = true
-        forksLabel.bottomAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
-        forksLabel.leadingAnchor.constraint(equalTo: self.trailingAnchor, constant: 60).isActive = true
-        forksLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
-        
+        forksLabel.topAnchor.constraint(equalTo: topAnchor).isActive = true
+        forksLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10).isActive = true
+
         starsLabel.topAnchor.constraint(equalTo: forksLabel.bottomAnchor).isActive = true
-        starsLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor).isActive = true
-        starsLabel.leadingAnchor.constraint(equalTo: self.trailingAnchor, constant: 60).isActive = true
-        starsLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
+        starsLabel.trailingAnchor.constraint(equalTo: trailingAnchor, constant: -10).isActive = true
     }
 }

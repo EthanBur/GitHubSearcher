@@ -60,11 +60,13 @@ class GitUserView: UIView {
     let biographyLabel: UILabel = {
        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
+        label.numberOfLines = 0
         return label
     }()
     
     let repoSearchBar: UISearchBar = {
         let repoSearchBar = UISearchBar()
+        repoSearchBar.translatesAutoresizingMaskIntoConstraints = false
         repoSearchBar.placeholder = "Search For Repos"
         return repoSearchBar
     }()
@@ -73,22 +75,32 @@ class GitUserView: UIView {
     var gitUserRepos: [UserRepo] = []
     var filteredRepos: [String] = []
     var user: User!
-//    var filteredUserImageUrl: [String] = []
+    var addUserInfo: additionalUser!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.backgroundColor = .white
         tableview.delegate = self
         tableview.dataSource = self
-        tableview.register(GitUserViewCell.self, forCellReuseIdentifier: "Cell")
+        repoSearchBar.delegate = self
+        tableview.register(GitUserViewCell.self, forCellReuseIdentifier: "newCell")
         setupViews()
     }
     
-    convenience init (user: User) {
+    convenience init (user: User, addUserInfo: additionalUser) {
         self.init(frame: .zero)
         self.user = user
-        guard let userName = self.user.login else {return}
+        self.addUserInfo = addUserInfo
+        let userName = self.user.login
         getRepoInfo(searchText: userName)
+        biographyLabel.text = "Biography: \(addUserInfo.bio ?? "No biography found")"
+        followersLabel.text = "Followers: \(addUserInfo.followers?.description ?? "No followers found")"
+        followingLabel.text = "Following: \(addUserInfo.following?.description ?? "User is not following anyone")"
+        joinDateLabel.text = "Date Joined: \(addUserInfo.created_at ?? "Account creation date not found")"
+        locationLabel.text = "Location: \(addUserInfo.location ?? "Location not found")"
+        emailLabel.text = "Email: \(addUserInfo.email ?? "Email not found")"
+        userNameLabel.text = "Name: \(addUserInfo.name ?? "Name not found")"
+        avatarImage.downloadImageFrom(link: user.avatar_url ?? "https://secure.gravatar.com/avatar/25c7c18223fb42a4c6ae1c8db6f50f9b?d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png", contentMode: .scaleAspectFit)
     }
     
     required init?(coder: NSCoder) {
@@ -111,54 +123,48 @@ class GitUserView: UIView {
     
     func setupConstraints() {
         NSLayoutConstraint.activate([
-            tableview.bottomAnchor.constraint(equalTo: bottomAnchor),
-            tableview.leadingAnchor.constraint(equalTo: leadingAnchor),
-            tableview.trailingAnchor.constraint(equalTo: trailingAnchor),
-            tableview.topAnchor.constraint(equalTo: centerYAnchor),
+            avatarImage.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            avatarImage.leadingAnchor.constraint(equalTo: leadingAnchor),
+            avatarImage.heightAnchor.constraint(equalToConstant: 200),
+            avatarImage.widthAnchor.constraint(equalTo: avatarImage.heightAnchor, multiplier: 5/7),
             
-            repoSearchBar.bottomAnchor.constraint(equalTo: tableview.topAnchor),
-            repoSearchBar.leadingAnchor.constraint(equalTo: leadingAnchor),
-            repoSearchBar.trailingAnchor.constraint(equalTo: trailingAnchor),
+            userNameLabel.topAnchor.constraint(equalTo: safeAreaLayoutGuide.topAnchor),
+            userNameLabel.leadingAnchor.constraint(equalTo: avatarImage.trailingAnchor, constant: 10),
+            userNameLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
             
-            biographyLabel.bottomAnchor.constraint(equalTo: repoSearchBar.topAnchor),
+            emailLabel.topAnchor.constraint(equalTo: userNameLabel.bottomAnchor, constant: 10),
+            emailLabel.leadingAnchor.constraint(equalTo: avatarImage.trailingAnchor, constant: 10),
+            emailLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
+            
+            locationLabel.topAnchor.constraint(equalTo: emailLabel.bottomAnchor, constant: 10),
+            locationLabel.leadingAnchor.constraint(equalTo: avatarImage.trailingAnchor, constant: 10),
+            locationLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
+            
+            joinDateLabel.leadingAnchor.constraint(equalTo: avatarImage.trailingAnchor, constant: 10),
+            joinDateLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
+            joinDateLabel.topAnchor.constraint(equalTo: locationLabel.bottomAnchor, constant: 10),
+            
+            followersLabel.leadingAnchor.constraint(equalTo: avatarImage.trailingAnchor, constant: 10),
+            followersLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
+            followersLabel.topAnchor.constraint(equalTo: joinDateLabel.bottomAnchor, constant: 10),
+            
+            followingLabel.leadingAnchor.constraint(equalTo: avatarImage.trailingAnchor, constant: 10),
+            followingLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
+            followingLabel.topAnchor.constraint(equalTo: followersLabel.bottomAnchor, constant: 10),
+            
+            biographyLabel.topAnchor.constraint(equalTo: avatarImage.bottomAnchor),
             biographyLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
             biographyLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
-            biographyLabel.topAnchor.constraint(equalTo: repoSearchBar.topAnchor, constant: -50),
-            
-            avatarImage.bottomAnchor.constraint(equalTo: biographyLabel.topAnchor),
-            avatarImage.leadingAnchor.constraint(equalTo: leadingAnchor),
-            avatarImage.trailingAnchor.constraint(equalTo: centerXAnchor),
-            avatarImage.topAnchor.constraint(equalTo: topAnchor),
-            
-            followingLabel.bottomAnchor.constraint(equalTo: biographyLabel.topAnchor),
-            followingLabel.leadingAnchor.constraint(equalTo: avatarImage.trailingAnchor),
-            followingLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
-            followingLabel.topAnchor.constraint(equalTo: biographyLabel.topAnchor, constant: -30),
-            
-            followersLabel.bottomAnchor.constraint(equalTo: followingLabel.topAnchor),
-            followersLabel.leadingAnchor.constraint(equalTo: avatarImage.trailingAnchor),
-            followersLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
-            followersLabel.topAnchor.constraint(equalTo: followingLabel.topAnchor, constant: -30),
-            
-            joinDateLabel.bottomAnchor.constraint(equalTo: followersLabel.topAnchor),
-            joinDateLabel.leadingAnchor.constraint(equalTo: avatarImage.trailingAnchor),
-            joinDateLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
-            joinDateLabel.topAnchor.constraint(equalTo: followersLabel.topAnchor, constant: -30),
-            
-            locationLabel.bottomAnchor.constraint(equalTo: joinDateLabel.topAnchor),
-            locationLabel.leadingAnchor.constraint(equalTo: avatarImage.trailingAnchor),
-            locationLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
-            locationLabel.topAnchor.constraint(equalTo: joinDateLabel.topAnchor, constant: -30),
-            
-            emailLabel.bottomAnchor.constraint(equalTo: locationLabel.topAnchor),
-            emailLabel.leadingAnchor.constraint(equalTo: avatarImage.trailingAnchor),
-            emailLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
-            emailLabel.topAnchor.constraint(equalTo: locationLabel.topAnchor, constant: -30),
-            
-            userNameLabel.bottomAnchor.constraint(equalTo: emailLabel.topAnchor),
-            userNameLabel.leadingAnchor.constraint(equalTo: avatarImage.trailingAnchor),
-            userNameLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
-            userNameLabel.topAnchor.constraint(equalTo: emailLabel.topAnchor, constant: -30)
+
+            repoSearchBar.topAnchor.constraint(equalTo: biographyLabel.bottomAnchor),
+            repoSearchBar.leadingAnchor.constraint(equalTo: leadingAnchor),
+            repoSearchBar.trailingAnchor.constraint(equalTo: trailingAnchor),
+            repoSearchBar.heightAnchor.constraint(equalToConstant: 50),
+
+            tableview.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
+            tableview.leadingAnchor.constraint(equalTo: leadingAnchor),
+            tableview.trailingAnchor.constraint(equalTo: trailingAnchor),
+            tableview.topAnchor.constraint(equalTo: repoSearchBar.bottomAnchor)
         ])
     }
 }

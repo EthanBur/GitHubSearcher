@@ -11,51 +11,34 @@ import UIKit
 extension MainView: UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         let searchBar = searchController.searchBar
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             if self.isFiltering{
                 self.getInfo(searchText: searchBar.text!)
-                for i in 0..<self.gitUsers.count {
+                var num = 0
+                if self.gitUsers.count > 10{
+                    num = 10
+                } else {
+                    num = self.gitUsers.count
+                }
+                for i in 0..<num {
                     self.getAdditionalInfo(urlString: self.gitUsers[i].url ?? "https://api.github.com/users/tom")
                 }
             }
-            if self.gitUsers.count != 0 {
-                self.filterContentForSearchText(searchText: searchBar.text!)
-            }
         }
+        tableview.reloadData()
     }
     
     var isFiltering: Bool {
-        return searchController.isActive && !(searchController.searchBar.text?.isEmpty ?? true)
-    }
-    
-    func filterContentForSearchText(searchText: String) {
-        var temp: [String] = []
-        filteredUserImageUrl = []
-        if gitUsers.count != 0 {
-            for i in 0...gitUsers.count-1 {
-                temp.append(gitUsers[i].login ?? "No name found!")
-            }
-        }
-        filteredUsers = temp.filter { (result: String) -> Bool in
-            return result.contains(searchText)
-        }
-        temp = []
-        for i in 0..<filteredUsers.count {
-            for j in 0..<gitUsers.count {
-                if gitUsers[j].login == filteredUsers[i] {
-                    temp.append(gitUsers[i].avatar_url ?? "https://avatars0.githubusercontent.com/u/9795?v=4")
-                }
-            }
-        }
-        filteredUserImageUrl = temp
-        tableview.reloadData()
+        return !(searchController.searchBar.text?.isEmpty ?? true)
     }
     
     //https://api.github.com/search/users?q=tom
     func getInfo(searchText: String) {
         let decoder = JSONDecoder()
         let url = URLBuilder.buildURL(scheme: "https", host: "api.github.com", path: "/search/users",queries: [URLQueryItem(name: "q", value: searchText)])!
-        let task = URLSession.shared.dataTask(with: url) {
+        var request = URLRequest(url: url)
+        request.addValue("token \(apiKey)", forHTTPHeaderField: "Authorization")
+        let task = URLSession.shared.dataTask(with: request) {
             data, response, error in
             
             if error == nil {
@@ -65,7 +48,7 @@ extension MainView: UITableViewDataSource, UITableViewDelegate, UISearchBarDeleg
                         self.gitUsers = self.gitUsers + gitUserData.items!
                     }
                 } catch {
-                    
+                    print(error.localizedDescription)
                 }
             }
             else{
@@ -74,10 +57,12 @@ extension MainView: UITableViewDataSource, UITableViewDelegate, UISearchBarDeleg
         }
         task.resume()
     }
-    
+
     func getAdditionalInfo(urlString: String) {        let decoder = JSONDecoder()
         guard let url = URL(string: urlString) else { return  }
-        let task = URLSession.shared.dataTask(with: url) {
+        var request = URLRequest(url: url)
+        request.addValue("token \(apiKey)", forHTTPHeaderField: "Authorization")
+        let task = URLSession.shared.dataTask(with: request) {
             data, response, error in
             
             if error == nil {
@@ -99,7 +84,7 @@ extension MainView: UITableViewDataSource, UITableViewDelegate, UISearchBarDeleg
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if isFiltering {
-            return filteredUsers.count
+            return gitUsers.count
         }
         return 10
     }
@@ -110,9 +95,11 @@ extension MainView: UITableViewDataSource, UITableViewDelegate, UISearchBarDeleg
         }
         var user: String
         if isFiltering {
-            user = filteredUsers[indexPath.row]
-            cell.userImage.downloadImageFrom(link: "\(String(describing: filteredUserImageUrl[indexPath.row]))", contentMode: .scaleAspectFit)
-            cell.repoNumLabel.text = gitUserAdditional[indexPath.row].public_repos?.description
+            user = gitUsers[indexPath.row].login ?? "Username not found!"
+            cell.userImage.downloadImageFrom(link: "\(String(describing: gitUsers[indexPath.row].avatar_url))", contentMode: .scaleAspectFit)
+            if gitUserAdditional.count > indexPath.row {
+                cell.repoNumLabel.text = "Repos: \(gitUserAdditional[indexPath.row].public_repos ?? 0)"
+            }
         } else {
             user = ""
         }
@@ -124,6 +111,7 @@ extension MainView: UITableViewDataSource, UITableViewDelegate, UISearchBarDeleg
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let gitVC = GitUserViewController()
         gitVC.user = gitUsers[indexPath.row]
+        gitVC.addUserInfo = gitUserAdditional[indexPath.row]
         self.searchController.isActive = false
         self.controller?.navigationController?.pushViewController(gitVC, animated: true)
     }

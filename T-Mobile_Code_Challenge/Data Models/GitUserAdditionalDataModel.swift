@@ -16,4 +16,5 @@ struct additionalUser: Decodable {
     var public_repos: Int?
     var followers: Int?
     var following: Int?
+    var created_at: String?
 }

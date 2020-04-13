@@ -9,5 +9,8 @@
 import UIKit
 
 struct UserRepo: Decodable {
-    var name: String?
+    var name: String
+    var stargazers_count: Int
+    var forks: Int
+    var html_url: String
 }
