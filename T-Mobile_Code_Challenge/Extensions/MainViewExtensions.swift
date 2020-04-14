@@ -14,7 +14,7 @@ import UIKit
 extension MainView: UITableViewDataSource, UITableViewDelegate, UISearchBarDelegate, UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         let searchBar = searchController.searchBar
-        self.gitUsers = []
+        guard searchBar.text?.isEmpty == false else { return }
         self.timer?.invalidate()
         self.timer = Timer.scheduledTimer(withTimeInterval: 0.5, repeats: false, block: { _ in
             self.getInfo(searchText: searchBar.text!) {
@@ -23,10 +23,6 @@ extension MainView: UITableViewDataSource, UITableViewDelegate, UISearchBarDeleg
                 }
             }
         })
-    }
-    
-    var isFiltering: Bool {
-        return !(searchController.searchBar.text?.isEmpty ?? true)
     }
     
     func getInfo(searchText: String, completion: @escaping () -> Void) {
@@ -46,8 +42,7 @@ extension MainView: UITableViewDataSource, UITableViewDelegate, UISearchBarDeleg
                 } catch {
                     print(error.localizedDescription)
                 }
-            }
-            else{
+            } else {
                 print("Error: \(String(describing: error))")
             }
             completion()
@@ -55,7 +50,7 @@ extension MainView: UITableViewDataSource, UITableViewDelegate, UISearchBarDeleg
         task.resume()
     }
     
-    func getAdditionalInfo(urlString: String, completion: @escaping (additionalUser?) -> Void) {
+    func getAdditionalInfo(urlString: String, completion: @escaping (AdditionalUser?) -> Void) {
         let decoder = JSONDecoder()
         guard let url = URL(string: urlString) else {
             completion(nil)
@@ -68,7 +63,7 @@ extension MainView: UITableViewDataSource, UITableViewDelegate, UISearchBarDeleg
             
             if error == nil {
                 do{
-                    let gitUserData = try decoder.decode(additionalUser.self, from: data ?? Data())
+                    let gitUserData = try decoder.decode(AdditionalUser.self, from: data ?? Data())
                     completion(gitUserData)
                 } catch {
                     print(error.localizedDescription)
@@ -95,7 +90,7 @@ extension MainView: UITableViewDataSource, UITableViewDelegate, UISearchBarDeleg
             self.getAdditionalInfo(urlString: url) { userInfo in
                 self.additionalUserInfoDictionary[indexPath] = userInfo
                 DispatchQueue.main.async {
-                    cell.repoNumLabel.text = "Repos: \(userInfo?.public_repos ?? 0)"
+                    cell.repoNumLabel.text = "Repos: \(userInfo?.publicRepos ?? 0)"
                 }
             }
         }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+final class ViewController: UIViewController {
 
     let mainView = MainView()
     
@@ -17,7 +17,7 @@ class ViewController: UIViewController {
         self.navigationController?.navigationBar.barTintColor = .gray
         let textAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white, NSAttributedString.Key.font: UIFont(name: "Trebuchet MS", size: 35.0)]
         navigationController?.navigationBar.titleTextAttributes = textAttributes as [NSAttributedString.Key : Any]
-//        mainView.controller = self
+        mainView.controller = self
         view = mainView
     }
 }

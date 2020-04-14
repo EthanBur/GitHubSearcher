@@ -8,10 +8,10 @@
 
 import UIKit
 
-class MainView: UIView {
-  
-  var additionalUserInfoDictionary: [IndexPath: additionalUser] = [:]
-  
+final class MainView: UIView {
+    
+    var additionalUserInfoDictionary: [IndexPath: AdditionalUser] = [:]
+    
     let tableview: UITableView = {
         let tableview = UITableView()
         tableview.translatesAutoresizingMaskIntoConstraints = false
@@ -29,8 +29,8 @@ class MainView: UIView {
     
     weak var controller: UIViewController?
     var gitUsers: [User] = []
-    var gitUserAdditional: [additionalUser] = []
-  var timer: Timer?
+    var gitUserAdditional: [AdditionalUser] = []
+    var timer: Timer?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -43,11 +43,10 @@ class MainView: UIView {
         searchController.searchResultsUpdater = self
         searchController.searchBar.delegate = self
         
-        self.controller?.navigationController?.title = "GitHub Searcher"
         self.controller?.navigationItem.searchController = searchController
         self.controller?.navigationItem.hidesSearchBarWhenScrolling = false
         setupViews()
-}
+    }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")

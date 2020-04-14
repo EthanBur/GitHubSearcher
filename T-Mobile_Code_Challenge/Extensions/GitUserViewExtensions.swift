@@ -16,7 +16,10 @@ extension GitUserView: UITableViewDataSource, UITableViewDelegate, UISearchBarDe
                 temp.append(gitUserRepos[i].name)
             }
         }
-        let text = repoSearchBar.text ?? "Empty Search"
+        defer { tableview.reloadData() }
+        guard let text = repoSearchBar.text else {
+            filteredRepos = []
+            return }
         filteredRepos = temp.filter { (result: String) -> Bool in
             return result.lowercased().contains(text.lowercased())
         }
@@ -24,7 +27,7 @@ extension GitUserView: UITableViewDataSource, UITableViewDelegate, UISearchBarDe
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let url = URL(string: gitUserRepos[indexPath.row].html_url) {
+        if let url = URL(string: gitUserRepos[indexPath.row].htmlURL) {
             UIApplication.shared.open(url)
         }
     }
@@ -75,13 +78,13 @@ extension GitUserView: UITableViewDataSource, UITableViewDelegate, UISearchBarDe
                 if filteredRepos[indexPath.row] == gitUserRepos[i].name {
                     cell.repoLabel.text = gitUserRepos[i].name
                     cell.forksLabel.text = "\(gitUserRepos[i].forks) Forks"
-                    cell.starsLabel.text = "\(gitUserRepos[i].stargazers_count) Stars"
+                    cell.starsLabel.text = "\(gitUserRepos[i].starCount) Stars"
                 }
             }
         } else {
             cell.repoLabel.text = gitUserRepos[indexPath.row].name
             cell.forksLabel.text = "\(gitUserRepos[indexPath.row].forks) Forks"
-            cell.starsLabel.text = "\(gitUserRepos[indexPath.row].stargazers_count) Stars"
+            cell.starsLabel.text = "\(gitUserRepos[indexPath.row].starCount) Stars"
         }
         return cell
     }

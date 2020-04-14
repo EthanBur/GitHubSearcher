@@ -10,7 +10,14 @@ import UIKit
 
 struct UserRepo: Decodable {
     var name: String
-    var stargazers_count: Int
+    var starCount: Int
     var forks: Int
-    var html_url: String
+    var htmlURL: String
+    
+    enum CodingKeys: String, CodingKey {
+        case name
+        case starCount = "stargazers_count"
+        case forks
+        case htmlURL = "html_url"
+    }
 }

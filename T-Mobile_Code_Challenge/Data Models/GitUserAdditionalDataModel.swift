@@ -8,13 +8,24 @@
 
 import UIKit
 
-struct additionalUser: Decodable {
+struct AdditionalUser: Decodable {
     var name: String?
     var email: String?
     var location: String?
     var bio: String?
-    var public_repos: Int?
+    var publicRepos: Int?
     var followers: Int?
     var following: Int?
-    var created_at: String?
+    var createdAt: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case name
+        case email
+        case location
+        case bio
+        case followers
+        case following
+        case publicRepos = "public_repos"
+        case createdAt = "created_at"
+    }
 }

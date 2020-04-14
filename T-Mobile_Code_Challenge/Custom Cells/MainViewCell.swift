@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MainViewCell: UITableViewCell {
+final class MainViewCell: UITableViewCell {
     let userLabel: UILabel = {
         let label = UILabel()
         label.numberOfLines = 4

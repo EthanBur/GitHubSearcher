@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GitUserView: UIView {
+final class GitUserView: UIView {
     let tableview: UITableView = {
         let tableview = UITableView()
         tableview.translatesAutoresizingMaskIntoConstraints = false
@@ -16,49 +16,49 @@ class GitUserView: UIView {
     }()
     
     let avatarImage: UIImageView = {
-       let imageView = UIImageView()
+        let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
     let userNameLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     let emailLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     let locationLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     let joinDateLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     let followersLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     let followingLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
     
     let biographyLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.numberOfLines = 0
         return label
@@ -71,11 +71,23 @@ class GitUserView: UIView {
         return repoSearchBar
     }()
     
+    lazy var dateFormatterGet: DateFormatter = {
+        let formatter = DateFormatter()
+       formatter.dateFormat = "YYYY-MM-DDTHH:MM:SSZ"
+       return formatter
+    }()
+    
+    lazy var dateFormatterPrint: DateFormatter = {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "MMM dd,yyyy"
+        return formatter
+    }()
+    
     weak var controller: UIViewController?
     var gitUserRepos: [UserRepo] = []
     var filteredRepos: [String] = []
     var user: User!
-    var addUserInfo: additionalUser!
+    var addUserInfo: AdditionalUser!
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -87,16 +99,23 @@ class GitUserView: UIView {
         setupViews()
     }
     
-    convenience init (user: User, addUserInfo: additionalUser) {
+    convenience init (user: User, addUserInfo: AdditionalUser) {
         self.init(frame: .zero)
         self.user = user
         self.addUserInfo = addUserInfo
         let userName = self.user.login
         getRepoInfo(searchText: userName)
+        var newDate = ""
+        if let tempDate = addUserInfo.createdAt{
+            if let date = dateFormatterGet.date(from:  tempDate) {
+                newDate = dateFormatterPrint.string(from: date)
+            } else { newDate = "Account creation date not found"}
+        } else { newDate = "Account creation date not found" }
+        
         biographyLabel.text = "Biography: \(addUserInfo.bio ?? "No biography found")"
         followersLabel.text = "Followers: \(addUserInfo.followers?.description ?? "No followers found")"
         followingLabel.text = "Following: \(addUserInfo.following?.description ?? "User is not following anyone")"
-        joinDateLabel.text = "Date Joined: \(addUserInfo.created_at ?? "Account creation date not found")"
+        joinDateLabel.text = "Date Joined: \(newDate)"
         locationLabel.text = "Location: \(addUserInfo.location ?? "Location not found")"
         emailLabel.text = "Email: \(addUserInfo.email ?? "Email not found")"
         userNameLabel.text = "Name: \(addUserInfo.name ?? "Name not found")"
@@ -155,12 +174,12 @@ class GitUserView: UIView {
             biographyLabel.topAnchor.constraint(equalTo: avatarImage.bottomAnchor),
             biographyLabel.leadingAnchor.constraint(equalTo: leadingAnchor),
             biographyLabel.trailingAnchor.constraint(equalTo: trailingAnchor),
-
+            
             repoSearchBar.topAnchor.constraint(equalTo: biographyLabel.bottomAnchor),
             repoSearchBar.leadingAnchor.constraint(equalTo: leadingAnchor),
             repoSearchBar.trailingAnchor.constraint(equalTo: trailingAnchor),
             repoSearchBar.heightAnchor.constraint(equalToConstant: 50),
-
+            
             tableview.bottomAnchor.constraint(equalTo: safeAreaLayoutGuide.bottomAnchor),
             tableview.leadingAnchor.constraint(equalTo: leadingAnchor),
             tableview.trailingAnchor.constraint(equalTo: trailingAnchor),

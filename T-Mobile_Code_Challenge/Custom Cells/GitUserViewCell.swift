@@ -8,7 +8,7 @@
 
 import UIKit
 
-class GitUserViewCell: UITableViewCell {
+final class GitUserViewCell: UITableViewCell {
     let repoLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
