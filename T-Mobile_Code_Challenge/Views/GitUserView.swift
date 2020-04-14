@@ -100,7 +100,7 @@ class GitUserView: UIView {
         locationLabel.text = "Location: \(addUserInfo.location ?? "Location not found")"
         emailLabel.text = "Email: \(addUserInfo.email ?? "Email not found")"
         userNameLabel.text = "Name: \(addUserInfo.name ?? "Name not found")"
-        avatarImage.downloadImageFrom(link: user.avatar_url ?? "https://secure.gravatar.com/avatar/25c7c18223fb42a4c6ae1c8db6f50f9b?d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png", contentMode: .scaleAspectFit)
+        avatarImage.downloadImageFrom(link: user.avatarURL ?? "https://secure.gravatar.com/avatar/25c7c18223fb42a4c6ae1c8db6f50f9b?d=https://a248.e.akamai.net/assets.github.com%2Fimages%2Fgravatars%2Fgravatar-user-420.png", contentMode: .scaleAspectFit)
     }
     
     required init?(coder: NSCoder) {

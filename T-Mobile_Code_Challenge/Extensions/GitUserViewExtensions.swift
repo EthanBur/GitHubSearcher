@@ -37,7 +37,7 @@ extension GitUserView: UITableViewDataSource, UITableViewDelegate, UISearchBarDe
         let decoder = JSONDecoder()
         let url = URLBuilder.buildURL(scheme: "https", host: "api.github.com", path: "/users/\(String(describing: user.login))/repos",queries: [])!
         var request = URLRequest(url: url)
-        request.addValue("token \(apiKey)", forHTTPHeaderField: "Authorization")
+        request.addValue("token \(Constants.accessToken)", forHTTPHeaderField: "Authorization")
         let task = URLSession.shared.dataTask(with: request) {
             data, response, error in
             

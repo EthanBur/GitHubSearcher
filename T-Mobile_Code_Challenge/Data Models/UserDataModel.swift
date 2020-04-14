@@ -10,7 +10,13 @@ import UIKit
 
 struct User: Decodable {
     var login: String
-    var avatar_url: String?
+    var avatarURL: String?
     var url: String?
+    
+    enum CodingKeys: String, CodingKey {
+        case login
+        case avatarURL = "avatar_url"
+        case url
+    }
 }
 

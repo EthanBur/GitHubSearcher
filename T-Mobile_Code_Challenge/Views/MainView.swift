@@ -9,6 +9,9 @@
 import UIKit
 
 class MainView: UIView {
+  
+  var additionalUserInfoDictionary: [IndexPath: additionalUser] = [:]
+  
     let tableview: UITableView = {
         let tableview = UITableView()
         tableview.translatesAutoresizingMaskIntoConstraints = false
@@ -27,6 +30,7 @@ class MainView: UIView {
     weak var controller: UIViewController?
     var gitUsers: [User] = []
     var gitUserAdditional: [additionalUser] = []
+  var timer: Timer?
     
     override init(frame: CGRect) {
         super.init(frame: frame)

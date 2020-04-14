@@ -6,4 +6,6 @@
 //  Copyright © 2020 MCS. All rights reserved.
 //
 
-let apiKey = "970cfb23110f001b9a23e0ca6e649f918f508ef9"
+enum Constants {
+    static let accessToken = "970cfb23110f001b9a23e0ca6e649f918f508ef9"
+}
