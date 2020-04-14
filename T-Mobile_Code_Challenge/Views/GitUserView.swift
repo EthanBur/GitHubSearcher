@@ -73,8 +73,8 @@ final class GitUserView: UIView {
     
     lazy var dateFormatterGet: DateFormatter = {
         let formatter = DateFormatter()
-       formatter.dateFormat = "YYYY-MM-DDTHH:MM:SSZ"
-       return formatter
+        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss'Z'"
+        return formatter
     }()
     
     lazy var dateFormatterPrint: DateFormatter = {
@@ -109,8 +109,12 @@ final class GitUserView: UIView {
         if let tempDate = addUserInfo.createdAt{
             if let date = dateFormatterGet.date(from:  tempDate) {
                 newDate = dateFormatterPrint.string(from: date)
-            } else { newDate = "Account creation date not found"}
-        } else { newDate = "Account creation date not found" }
+            } else {
+                newDate = "Account creation date not found"
+            }
+        } else {
+            newDate = "Account creation date not found"
+        }
         
         biographyLabel.text = "Biography: \(addUserInfo.bio ?? "No biography found")"
         followersLabel.text = "Followers: \(addUserInfo.followers?.description ?? "No followers found")"
